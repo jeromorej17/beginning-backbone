@@ -59,5 +59,8 @@ app.use(allowCrossDomain);
 //Parses the JSON object given in the body request
 app.use(bodyParser.json());
 
+//all routes will be redirected to root folder as public
+app.use(express.static(path.join(__dirname, '../')));
+
 //start up the app on port 8080
 app.listen(8080);
