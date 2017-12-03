@@ -413,3 +413,8 @@ button {
 	background: #ddd;
 	color: #000;
 }
+
+.badge {
+    width: 200px!important;
+    height: 24px;
+}

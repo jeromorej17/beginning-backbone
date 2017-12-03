@@ -53,6 +53,22 @@ app.get('/timeline', function(request, response){
     });
 });
 
+/**
+ * Returns user profile with the id provided
+ */
+app.get('/profile', function(request, response){
+    response.header('Access-Control-Allow-Origin', '*');
+    twitterClient.get('users/show', {screen_name: 'jeromorej17'}, function(err, reply){
+        if(err){
+            console.log('Error: ' + err);
+            response.sendStatus(404);
+        }
+        if(reply){
+            response.json(reply);
+        }
+    })
+});
+
 //allow cross domain
 app.use(allowCrossDomain);
 

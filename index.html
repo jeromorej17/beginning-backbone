@@ -9,16 +9,28 @@
         <link rel="stylesheet" href="css/metro-responsive.min.css">
         <link rel="stylesheet" href="css/metro-rtl.min.css">
         <link rel="stylesheet" href="css/metro-schemes.min.css">
+        <link rel="stylesheet" href="css/modern.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body class="metrouicss">
         <!-- HTML content and div placeholders -->
-        <div id='timeline' class='timeline-view'>
-            <h2>My Tweets</h2>
+        <div id="app" class="grid">
+            <div class="row">
+                <div class="span8">
+                    <div id='timeline' class='timeline-view'>
+                        <h2>My Tweets</h2>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div id="profile" class="profile-view">
+                        <!-- Profile View here -->
+                    </div>
+                </div>
+            </div>
         </div>
-
         <!-- Handlebars templates -->
         <script type="text/x-handlebars-template" id="timeline-template">
-                <ul class="listview">
+                <ul class="listview fluid">
                     {{#each tweet}}
                     <li>
                         <div class="icon">
@@ -26,30 +38,54 @@
                         </div>
                         <div class="data">
                             <h4>{{user.name}}</h4>
-                            <p>{{text}}</p>
+                            <p>{{format text}}</p>
+                            <p class="timestamp"><i>{{friendlyDate}}</i></p>
                         </div>
                     </li>
                     {{/each}}
                 </ul>
         </script>
+        <!-- Profile template -->
+        <script type="text/x-handlebars-template" id="profile-template">
+            <div class="tiles clearfix">
+                <div class="tile double bg-color-orangeDark">
+                    <div class="tile-content">
+                        <img src="{{user.profile_image_url}}" class="place-left">
+                        <h3 style="margin-bottom: 5px;">{{user.name}}</h3>
+                        <p>{{user.description}}</p>
+                        <div class="brand">
+                            <div class="badge">{{user.friends_count}} Friends</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
         <!-- External Libraries -->
         <script src="js/external/jquery-1.11.1.min.js"></script>
         <script src="js/external/underscore-1.8.3.min.js"></script>
         <script src="js/external/backbone.js"></script>
         <script src="js/external/handlebars-v4.0.11.js"></script>
         <script src="js/external/metro.min.js"></script>
+        <script src="js/external/moment.min.js"></script>
+       
 
         <!-- Model -->
         <script src="js/app/model/tweet.model.js"></script>
+        <script src="js/app/model/profile.model.js"></script>
 
         <!-- Collections -->
         <script src="js/app/collection/timeline.js"></script>
 
         <!-- View -->
         <script src="js/app/view/timeline.view.js"></script>
+        <script src="js/app/view/profile.view.js"></script>
 
         <!-- Routers -->
         <script src="js/app/router/AppRouter.js"></script>
+
+        <!-- Util -->
+        <script src="js/app/util/helpers.js"></script>
 
         <!-- The main for this app -->
         <script src="js/app/app.js"></script>
